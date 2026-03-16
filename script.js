@@ -68,8 +68,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Reveal on Scroll Intersection Observer
     const observerOptions = {
         root: null,
-        rootMargin: '0px 0px -50px 0px',
-        threshold: 0.01
+        rootMargin: '0px',
+        threshold: 0.15
     };
     const revealObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
