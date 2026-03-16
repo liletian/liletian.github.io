@@ -605,6 +605,28 @@ footer {
     border-top: 1px solid rgba(255,255,255,0.05);
 }
 
+/* ── Visitor Counter ──────────────────────────────────────────────────────── */
+.visitor-counter {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+.visitor-counter i {
+    font-size: 1rem;
+    color: var(--accent-1);
+}
+
+#visit-count {
+    font-weight: 600;
+    color: var(--accent-1);
+}
+/* ─────────────────────────────────────────────────────────────────────────── */
+
 /* Responsive */
 @media (max-width: 768px) {
     .menu-btn {

@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (yearSpan) {
         yearSpan.textContent = new Date().getFullYear();
     }
-
     // Navbar Scroll Effect
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
@@ -14,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
             navbar.classList.remove('scrolled');
         }
     });
-
     // Mobile Menu Toggle
     const menuBtn = document.querySelector('.menu-btn');
     const navLinks = document.querySelector('.nav-links');
@@ -31,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 icon.classList.add('ph-list');
             }
         });
-
         // Close menu on link click
         const links = navLinks.querySelectorAll('a');
         links.forEach(link => {
@@ -43,7 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-
     // Custom Cursor Glow
     const cursorGlow = document.querySelector('.cursor-glow');
     if (cursorGlow && window.matchMedia("(pointer: fine)").matches) {
@@ -54,7 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 cursorGlow.style.top = e.clientY + 'px';
             });
         });
-
         // Interactive states for cursor
         const interactiveElements = document.querySelectorAll('a, button, .project-card');
         interactiveElements.forEach(el => {
@@ -70,26 +65,38 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-
     // Reveal on Scroll Intersection Observer
     const observerOptions = {
         root: null,
         rootMargin: '0px',
         threshold: 0.15
     };
-
     const revealObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('in-view');
-                // Optional: stop observing after it animates once
-                // observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
-
     const revealElements = document.querySelectorAll('.line-up');
     revealElements.forEach(el => {
         revealObserver.observe(el);
     });
+
+    // ── Page View Counter (counterapi.dev) ──────────────────────────────────
+    async function updateVisitCount() {
+        try {
+            const res = await fetch('https://api.counterapi.dev/v1/liletian-github-io/pageviews/up');
+            const data = await res.json();
+            const countEl = document.getElementById('visit-count');
+            if (countEl && data.count !== undefined) {
+                countEl.textContent = data.count.toLocaleString();
+            }
+        } catch (err) {
+            const countEl = document.getElementById('visit-count');
+            if (countEl) countEl.textContent = '–';
+        }
+    }
+    updateVisitCount();
+    // ────────────────────────────────────────────────────────────────────────
 });
